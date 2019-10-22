@@ -1,0 +1,26 @@
+.mainclass{
+	background-color:greenyellow;
+}
+
+
+.menu{
+	margin-top:50px;
+	margin-left:20px;
+    margin-bottom:25px;
+
+}
+.menu_list {
+	list-style-type:none;
+	text-decoration:none;
+}
+.menu_list li{
+	display:inline;
+	
+	color:black;
+}
+.menu_list_item{
+	padding:15px;
+}
+footer{
+	margin-top:25px;
+}
