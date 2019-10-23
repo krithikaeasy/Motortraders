@@ -34,7 +34,7 @@ Route::resource('motor', 'MotorController')->only(['index', 'create', 'store', '
 
 
 
-Route::post('search','SearchController@getSearchData');
+Route::get('search','SearchController@getSearchData');
 
 
 
