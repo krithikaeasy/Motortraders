@@ -36,5 +36,11 @@ Route::resource('motor', 'MotorController')->only(['index', 'create', 'store', '
 
 Route::get('search','SearchController@getSearchData');
 
+Route::post('searchdetails','SearchController@getSearchDisplay');
+
+Route::post('searchreturn','SearchController@getViewSearchReturn');
+
+Route::post('searchbikesreturn','SearchController@getViewSearchReturnDisplay');
+
 
 
