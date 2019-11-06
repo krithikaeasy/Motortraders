@@ -61,7 +61,7 @@ class searchController extends Controller
                 'motorImages',
                 'user' => function ($q) {
                     return $q->with([
-                       'userDetail' // user_details table not available, so I hide userDetail data
+                        'userDetail' // user_details table not available, so I hide userDetail data
                     ]);
                 },
             ]);
@@ -113,55 +113,62 @@ class searchController extends Controller
 
 //        $searches = $query->toSql();
         $searches = $query->get();
-       // $searches->toArray();
+        // $searches->toArray();
 
 
-      /* return [
-            $searches,
-            DB::getQueryLog()
-        ];*/
+        /* return [
+              $searches,
+              DB::getQueryLog()
+          ];*/
 
-       return view('content.viewsearchbikes', [
+        return view('content.viewsearchbikes', [
             'searches' => $searches
         ]);
     }
 
     public function getSearchDisplay(Request $request)
-   {
-     // return $request['id'];
-    $searchdisplays = UserMotor::where('id', $request['id'] )    
-      ->with('motorImages','user')
-      ->first(); 
+    {
+        // return $request['id'];
+        $searchdisplays = UserMotor::where('id', $request['id'])
+            ->with('motorImages', 'user')
+            ->first();
         //return $searchdisplays;
-       return  view('content.viewsearchbikesdisplay',[
-          'searchdisplay'=>$searchdisplays
-      ]);
-      
+        return view('content.viewsearchbikesdisplay', [
+            'searchdisplay' => $searchdisplays
+        ]);
+
     }
 
     public function getViewSearchReturn(Request $request)
-  {
-    //return $request['id'];
-    $searches =  UserMotor::where('id', $request['id'] )
-    ->with('motorImages','user')
-    ->get();
-     return  view('content.viewsearchbikesreturn',[
-    'searches'=>$searches
-    ]);
-  }
+    {
+        //return $request['id'];
+        $searches = UserMotor::where('id', $request['id'])
+            ->with('motorImages', 'user')
+            ->get();
+        return view('content.viewsearchbikesreturn', [
+            'searches' => $searches
+        ]);
+    }
 
-  public function getViewSearchReturnDisplay(Request $request)
-  {
-    
-    $searches =  UserMotor::where('id', $request['id'] )
-    ->with('motorImages','user')
-   ->get();
+    public function getViewSearchReturnDisplay(Request $request, $id)
+    {
 
-   return  view('content.viewsearchbikesdisplayreturn',[
-    'searches'=>$searches
-    ]);
-  }
+        $motor = UserMotor::query()
+            ->with([
+                'motorImages',
+                'user' => function ($q) {
+                    return $q->with([
+                        'userDetail'
+                    ]);
+                }
+            ])
+            ->find($id);
 
- 
+        return view('content.viewsearchbikesdisplayreturn', [
+            'motor' => $motor
+        ]);
+    }
+
+
 }
 

@@ -38,9 +38,11 @@ Route::get('search','SearchController@getSearchData');
 
 Route::post('searchdetails','SearchController@getSearchDisplay');
 
-Route::post('searchreturn','SearchController@getViewSearchReturn');
+//Route::post('searchreturn','SearchController@getViewSearchReturn');
 
-Route::post('searchbikesreturn','SearchController@getViewSearchReturnDisplay');
+//Route::post('searchbikesreturn','SearchController@getViewSearchReturnDisplay');
+
+Route::get('motor/{motor_id}','SearchController@getViewSearchReturnDisplay');
 
 
 

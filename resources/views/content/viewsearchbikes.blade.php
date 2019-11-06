@@ -1,7 +1,7 @@
 @extends('content.master')
 @section('search')
 
-    <table>
+    <table cellpadding="10" cellspacing="7">
         <tr>
             <th>manufacture:</th>
             <th>model:</th>
@@ -14,25 +14,28 @@
         </tr>
         @foreach ($searches as $search)
             <tr>
-                <td>{{$searches->manufacture}}</td>
-                <td>{{$searches->model_name}}</td>
-                <td>{{$searches->price}}</td>
-                <td>{{$searches->year}}</td>
-                <td>{{$searches->colour}}</td>
-                <td>{{$searches->cc}}</td>
+                <td>{{$search->manufacture}}</td>
+                <td>{{$search->model_name}}</td>
+                <td>{{$search->price}}</td>
+                <td>{{$search->year}}</td>
+                <td>{{$search->colour}}</td>
+                <td>{{$search->cc}}</td>
                 <td>
-                    @foreach($searches->motorImages as $key=>$image)
+                    @foreach($search->motorImages as $key => $image)
                         @if($key==0)
-                            <img src="{{asset('storage/avatars/'.$image->images.'')}}">
+{{--                            <img alt="" src="{{asset('storage/avatars/'. $image->images . '')}}">--}}
+                            <img style="height: 60px; width: 60px;" src="{{ asset('storage/' . $image->url) }}" alt="">
+
                         @endif
                     @endforeach
                 </td>
                 <td>
-                    <form action="{{url('search')}}" method="post">
-                        @csrf
-                        <input type="hidden" value="{{$searches->id}}" name="id">
-                        <input type="submit" value="click">
-                    </form>
+{{--                    <form action="{{url('search')}}" method="post">--}}
+{{--                        @csrf--}}
+{{--                        <input type="hidden" value="{{$search->id}}" name="id">--}}
+{{--                        <input type="submit" value="click">--}}
+{{--                    </form>--}}
+                    <a href="{{ url('motor/' . $search->id) }}">View</a>
                 </td>
             </tr>
         @endforeach
