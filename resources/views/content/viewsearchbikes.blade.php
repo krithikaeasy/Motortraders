@@ -3,6 +3,7 @@
 
     <table cellpadding="10" cellspacing="7">
         <tr>
+            <th>ID:</th>
             <th>manufacture:</th>
             <th>model:</th>
             <th>price:</th>
@@ -12,8 +13,9 @@
             <th>image:</th>
 
         </tr>
-        @foreach ($searches as $search)
+        @foreach ($paginator as $search)
             <tr>
+                <td>{{$search->id}}</td>
                 <td>{{$search->manufacture}}</td>
                 <td>{{$search->model_name}}</td>
                 <td>{{$search->price}}</td>
@@ -40,6 +42,11 @@
             </tr>
         @endforeach
     </table>
+
+
+    {!! $paginator->links() !!}
+
+
 @endsection
 
 

@@ -41,8 +41,6 @@ class searchController extends Controller
 
     public function getSearchData(Request $request)
     {
-        DB::enableQueryLog();
-
         $input = $request->input();
         $manufacture = @$input['manufacture'];
         $model = @$input['model'];
@@ -91,7 +89,7 @@ class searchController extends Controller
         }
 
         if ($district) {
-            $query->where('district', 'LIKE', "%$district%");
+            $query->whereRaw("user_motors.user_id IN (SELECT user_details.user_id FROM user_details WHERE user_details.district LIKE '%$district%')");
         }
 
         if ($colour) {
@@ -99,7 +97,7 @@ class searchController extends Controller
         }
 
         if ($state) {
-            $query->where('state', $state);
+            $query->whereRaw("user_motors.user_id IN (SELECT user_details.user_id FROM user_details WHERE user_details.state LIKE '%$state%')");
         }
 
         if ($ccMin) {
@@ -110,19 +108,10 @@ class searchController extends Controller
             $query->where('cc', '<=', $ccMax);
         }
 
-
-//        $searches = $query->toSql();
-        $searches = $query->get();
-        // $searches->toArray();
-
-
-        /* return [
-              $searches,
-              DB::getQueryLog()
-          ];*/
+        $searches = $query->paginate(5);
 
         return view('content.viewsearchbikes', [
-            'searches' => $searches
+            'paginator' => $searches
         ]);
     }
 
@@ -168,7 +157,5 @@ class searchController extends Controller
             'motor' => $motor
         ]);
     }
-
-
 }
 

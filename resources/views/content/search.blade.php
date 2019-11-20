@@ -7,6 +7,7 @@
                     <div class="card-header">{{ __('Search')}}</div>
                     <div class="card-body">
                         <form method="GET" action="{{url('search')}}">
+                            <input type="hidden" name="page" value="1">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">

@@ -20,16 +20,13 @@
         <td>{{$motor->cc}}</td>
         <td>
             @foreach($motor->motorImages as $key=>$image)
-                @if($key==0)
-{{--                    <img src="{{asset('storage/avatars/'.$image->image.'')}}">--}}
-                    <img style="height: 60px; width: 60px;" src="{{ asset('storage/' . $image->url) }}" alt="">
-
-                @endif
+                <img style="height: 60px; width: 60px;" src="{{ asset('storage/' . $image->url) }}" alt="">
+                <br>
             @endforeach
         </td>
         <td>{{$motor->user->email}}</td>
 
-        <td>{{ $motor->user->userDetail->first_name }} {{ $motor->user->userDetail->last_name }}</td>
+        <td>{{ @$motor->user->userDetail->first_name }} {{ @$motor->user->userDetail->last_name }}</td>
     </tr>
 </table>
 
