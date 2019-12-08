@@ -19,7 +19,7 @@
         <td>{{$motor->colour}}</td>
         <td>{{$motor->cc}}</td>
         <td>
-            @foreach($motor->motorImages as $key=>$image)
+            @foreach($motor->motorImages as $key => $image)
                 <img style="height: 60px; width: 60px;" src="{{ asset('storage/' . $image->url) }}" alt="">
                 <br>
             @endforeach

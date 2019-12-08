@@ -43,7 +43,7 @@ class searchController extends Controller
     {
         $input = $request->input();
         $manufacture = @$input['manufacture'];
-        $model = @$input['model'];
+        $modelName = @$input['model_name'];
         $district = @$input['district'];
         $priceMin = (float)@$input['price_min'];
         $priceMax = (float)@$input['price_max'];
@@ -76,8 +76,8 @@ class searchController extends Controller
             $query->where('price', '<=', $priceMax);
         }
 
-        if ($model) {
-            $query->where('model', 'LIKE', "%$model%");
+        if ($modelName) {
+            $query->where('model_name', 'LIKE', "%$modelName%");
         }
 
         if ($yearFrom) {

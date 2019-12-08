@@ -41,7 +41,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="model_name" class=" col-md-3 col-form-label text-md-left">Model</label>
-                                        <input type="text" class="col-md-9 form-control{{ $errors->has('model_name') ? ' is-invalid' : '' }}" name="model" value="" autofocus>
+                                        <input type="text" class="col-md-9 form-control{{ $errors->has('model_name') ? ' is-invalid' : '' }}" name="model_name" value="" autofocus>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
